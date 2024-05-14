@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="assets/bootstrap-5.3.2/css/bootstrap.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+
+
+
+    <title>Document</title>
+</head>
+
+<body style="background-color:#b5d8ff;">
+
+    <header>
+        <div class="Weather">
+            <navigation>
+                <nav class="navbar navbar-expand-lg">
+                    <div class="container-fluid ">
+                        <a class=" navbar-brand " href=" #"> WeatherForecast</a>
+
+                        <div class="collapse navbar-collapse justify-content-end" id="navbarTogglerDemo02">
+
+                            <input class="weather_search form-control me-2" type="search" list="suggestions"
+                                placeholder="Enter City Name..." aria-label="Search">
+
+                        </div>
+                        <datalist id="suggestions">
+                            <option value="Hanoi"></option>
+                            <option value="New York"></option>
+                            <option value="London"></option>
+                        </datalist>
+                    </div>
+                </nav>
+    </header>
+
+    <main>
+
+        <div class="container col-md-10 rounded">
+            <div class="row">
+
+                <div class="left_tab rounded">
+
+                    <div class="weather_today detail rounded">
+                        <div class="weather_details item local">
+                            <h7 class="weather_day"> 17:11 &emsp; November 17 </h7>
+                            <h7 class="weather_calendar"> 17/11/2024 </h7>
+                            <p> <span class="current-temperature">25</span> </p>
+                        </div>
+                        <div class="item mini">
+                            <h7> &deg;C </h7> <br> <br>
+                            <h7 class="weather_city"> City </h7>
+                        </div>
+                        <img class="rotate_03" src="assets/images/sun.png">
+                    </div>
+
+                    <div class="text p-1">
+                        <h6> Hourly forecast </h6>
+                    </div>
+
+                    <div class="temperature py-3">
+
+                        <div class=" item item_1">
+
+                            <h6> 9:00 AM </h6>
+                            <img src="assets/images/rainny.png" alt="rainny" class="weather_forecast_icon">
+                            <h6> <span class="value">25</span>&deg;C </h6>
+                        </div>
+
+                        <div class="item item_1">
+
+                            <h6> 10:00 AM </h6>
+                            <img src="assets/images/thunder.png">
+                            <h6> <span class="value">25</span>&deg;C </h6>
+                        </div>
+
+                        <div class=" item item_1">
+
+                            <h6> 11:00 AM </h6>
+                            <img src="assets/images/sunny.png" alt="sunny">
+                            <h6> <span class="value">25</span>&deg;C </h6>
+                        </div>
+
+                        <div class=" item item_1">
+
+                            <h6> 12:00 AM </h6>
+                            <img src="assets/images/sunny.png" alt="sunny">
+                            <h6> <span class="value">25</span>&deg;C </h6>
+                        </div>
+
+                        <div class=" item item_1">
+
+                            <h6> 1:00 PM </h6>
+                            <img src="assets/images/sunny.png" alt="sunny">
+                            <h6> <span class="value">25</span>&deg;C </h6>
+                        </div>
+
+                        <div class=" item item_1">
+
+                            <h6> 2:00 PM </h6>
+                            <img src="assets/images/rainny.png" alt="rainny">
+                            <h6> <span class="value">25</span>&deg;C </h6>
+                        </div>
+
+                        <div class=" item item_1">
+
+                            <h6> 3:00 PM </h6>
+                            <img src="assets/images/sunny.png" alt="sunny">
+                            <h6> <span class="value">25</span>&deg;C </h6>
+                        </div>
+
+                        <div class=" item item_1">
+
+                            <h6> 4:00 PM </h6>
+                            <img src="assets/images/sunny.png" alt="sunny">
+                            <h6> <span class="value">25</span>&deg;C </h6>
+                        </div>
+
+                    </div>
+
+                    <div class="text p-2">
+                        <h6> Today's highlight </h6>
+                    </div>
+
+                    <div class="flexbox">
+
+                        <div class="item item_2">
+                            <div class="text2">
+                                <h6> Humidity </h6>
+                                <img src="assets/images/humid.png">
+                                <p1> <span class="humiditiy-value emphasizedText2"> 82 </span> % </p1>
+
+                                <div class="skills">
+
+                                    <div class="skill">
+                                        <div class="skill-name"> good </div>
+                                        <div class="skill-bar">
+                                            <div class="skill-per" per="100%" style="max-width: 100%;"> </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="skill">
+                                        <div class="skill-name"> normal </div>
+                                        <div class="skill-bar">
+                                            <div class="skill-per" per="100%" style="max-width: 100%;"> </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="skill">
+                                        <div class="skill-name"> bad </div>
+                                        <div class="skill-bar">
+                                            <div class="skill-per" per="100%" style="max-width: 60%;"> </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="item item_2">
+                            <div class="text2">
+                                <h6> Wind </h6>
+                                <img src="assets/images/wind.png">
+                                <p1> <span class="wind-value emphasizedText2"> 10 </span> m/s </p1>
+
+                                <div class="skills">
+                                    <div class="skill">
+                                        <div class="skill-name"> 0 &ensp; 5 &ensp; 10 &ensp; 20 &ensp; 30 &ensp; 40
+                                            &ensp; 60</div>
+                                        <div class="skill-bar">
+                                            <div class="skill-per" per="100%" style="max-width: 30%;"> </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="item item_2">
+                            <div class="text2">
+                                <h6> Pressure </h6>
+                                <img src="assets/images/precipitation.png">
+                                <p1> <span class="pressure-value emphasizedText2"> 1.4 </span> Pa </p1>
+
+                                <div class="skills">
+
+                                    <div class="skill">
+                                        <div class="skill-name"> 0 </div>
+                                        <div class="skill-bar">
+                                            <div class="skill-per" per="100%" style="max-width: 100%;"> </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="skill">
+                                        <div class="skill-name"> 10 </div>
+                                        <div class="skill-bar">
+                                            <div class="skill-per" per="100%" style="max-width: 40%;"> </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="skill">
+                                        <div class="skill-name"> 20 </div>
+                                        <div class="skill-bar">
+                                            <div class="skill-per" per="100%" style="max-width: 0%;"> </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="skill">
+                                        <div class="skill-name"> 20 </div>
+                                        <div class="skill-bar">
+                                            <div class="skill-per" per="100%" style="max-width: 0%;"> </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="skill">
+                                        <div class="skill-name"> 40 </div>
+                                        <div class="skill-bar">
+                                            <div class="skill-per" per="100%" style="max-width: 0%;"> </div>
+                                        </div>
+                                    </div>
+                                    <div class="skill">
+                                        <div class="skill-name"> 50 </div>
+                                        <div class="skill-bar">
+                                            <div class="skill-per" per="100%" style="max-width: 0%;"> </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="item item_3">
+                            <div class="text2">
+                                <h6> UV Index </h6>
+                                <img src="assets/images/uv.png">
+                                <p1> <span class="emphasizedText2"> 4 </span> medium </p1>
+
+                                <div class="skills">
+                                    <div class="skill">
+                                        <div class="skill-name"> 0 </div>
+                                        <div class="skill-bar">
+                                            <div class="skill-per" per="100%" style="max-width: 100%;"> </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="skill">
+                                        <div class="skill-name"> 2 </div>
+                                        <div class="skill-bar">
+                                            <div class="skill-per" per="100%" style="max-width: 100%;"> </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="skill">
+                                        <div class="skill-name"> 4 </div>
+                                        <div class="skill-bar">
+                                            <div class="skill-per" per="100%" style="max-width: 100%;"> </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="skill">
+                                        <div class="skill-name"> 6 </div>
+                                        <div class="skill-bar">
+                                            <div class="skill-per" per="100%" style="max-width: 50%;"> </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="skill">
+                                        <div class="skill-name"> 8 </div>
+                                        <div class="skill-bar">
+                                            <div class="skill-per" per="100%" style="max-width: 0%;"> </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="skill">
+                                        <div class="skill-name"> 10 </div>
+                                        <div class="skill-bar">
+                                            <div class="skill-per" per="100%" style="max-width: 0%;"> </div>
+                                        </div>
+                                    </div>
+                                    <div class="skill">
+                                        <div class="skill-name"> 12 </div>
+                                        <div class="skill-bar">
+                                            <div class="skill-per" per="100%" style="max-width: 0%;"> </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="item item_3">
+                            <div class="text2">
+                                <h6> Feels like </h6>
+                                <img src="assets/images/feel.png">
+                                <p1> <span class="feel-value emphasizedText2"> 30&deg;C </span> &deg;C </p1>
+
+                                <div class="skills">
+                                    <div class="skill">
+                                        <div class="skill-name"> 0° &emsp; &emsp; &emsp; &nbsp; 25° &emsp; &emsp; &emsp;
+                                            50° </div>
+                                        <div class="skill-bar">
+                                            <div class="skill-per" per="100%" style="max-width: 70%;"> </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="item item_3">
+                            <div class="text2">
+                                <h6> Chance of rain </h6>
+                                <img src="assets/images/chance.png">
+                                <p> <span class="emphasizedText2"> 42% </span> </p>
+
+                                <div class="skills">
+                                    <div class="skill">
+                                        <div class="skill-name"> 0° &nbsp; 25° &emsp; 50° &emsp; 75° &emsp; 100°</div>
+                                        <div class="skill-bar">
+                                            <div class="skill-per" per="100%" style="max-width: 35%;"> </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="right_tab rounded">
+
+                    <div class="text py-2">
+                        <h6> Daily Forecast </h6>
+                        <hr>
+                    </div>
+
+                    <div class="weather_forecast daily">
+
+                        <div class="weather_forecast_item item item_1 ">
+                            <div class=" text3 py-1">
+                                <h6 class="weather_forecast_day"> day </h6>
+                                <h7> 16 Nov </h7>
+
+                            </div>
+                            <h5 class="weather_forecast_temperature"> &emsp;temp </h5>
+                            <img src="assets/images/sunny.png" alt="sunny" class="weather_forecast_icon">
+                        </div>
+
+                        <div class="item item_1 ">
+                            <div class=" text3 py-1">
+                                <h6> day </h6>
+                                <h7> 16 Nov </h7>
+                            </div>
+                            <h5> &emsp;temp </h5>
+                            <img src="assets/images/sunny.png" alt="sunny" class="weather_forecast_icon">
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+    </div>
+    <footer>
+        <p class="text-center justify-content-start "> @Copy right by Doan Nhung </p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

@@ -83,9 +83,25 @@ nav{
     border-radius: 2vh;
 
 }
+
+.temperature::-webkit-scrollbar {
+    height: 8px; /* Chiều cao của thanh cuộn */
+    background-color: #f1f1f1; /* Màu nền của thanh cuộn */
+}
+
+.temperature::-webkit-scrollbar-thumb {
+    background-color: #888; /* Màu của thanh cuộn */
+}
+
+.temperature::-webkit-scrollbar-thumb {
+    background-color: #888; /* Màu của thanh cuộn */
+    border-radius: 8px; /* Bo tròn các góc của thanh cuộn */
+  }
+
 .container .row .left_tab .temperature .item{
     justify-content: space-between;
 }
+
 .container .row .left_tab .temperature .item_1{
     flex-wrap: wrap;
     width: 5.5rem;

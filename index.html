@@ -7,10 +7,8 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="assets/bootstrap-5.3.2/css/bootstrap.min.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
-
-
-
-    <title>Document</title>
+    <link rel="icon" href="./assets/favicon/favicon-32x32.png" sizes="32x32">
+    <title>Weather</title>
 </head>
 
 <body style="background-color:#b5d8ff;">
@@ -22,11 +20,10 @@
                     <div class="container-fluid ">
                         <a class=" navbar-brand " href=" #"> WeatherForecast</a>
 
-                        <div class="collapse navbar-collapse justify-content-end" id="navbarTogglerDemo02">
+                        <div class="collapse navbar-collapse justify-content-end position-relative" id="navbarTogglerDemo02">
 
                             <input class="weather_search form-control me-2" type="search" list="suggestions"
                                 placeholder="Enter City Name..." aria-label="Search">
-
                         </div>
                         <datalist id="suggestions">
                             <option value="Hanoi"></option>
@@ -61,7 +58,7 @@
                         <h6> Hourly forecast </h6>
                     </div>
 
-                    <div class="temperature py-3">
+                    <div class="temperature py-3 flex-nowrap overflow-auto">
 
                         <div class=" item item_1">
 
@@ -376,7 +373,7 @@
         <p class="text-center justify-content-start "> @Copy right by Doan Nhung </p>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="script-backup.js"></script>
 </body>
 
 </html>

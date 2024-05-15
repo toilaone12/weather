@@ -62,8 +62,16 @@ let weatherImages = [
 ];
 
 //  API Connection for current weather section (phan lay thong tin api thoi tiet ngay bh)
-let getWeatherCurrentDay = async (coordinates) => {
-  let endpoint = `${weatherCurrentEndpoint}&lat=${coordinates[0]}&lon=${coordinates[1]}`;
+let getWeatherCurrentDay = async (cityString) => {
+  let city;
+  if (cityString.includes(",")) {
+    city =
+      cityString.substring(0, cityString.indexOf(",")) +
+      cityString.substring(cityString.lastIndexOf(","));
+  } else {
+    city = cityString;
+  }
+  let endpoint = `${weatherCurrentEndpoint}&q=${city}`;
   let response = await fetch(endpoint);
   if (response.status !== 200) {
     alert("City not found!");
@@ -73,20 +81,17 @@ let getWeatherCurrentDay = async (coordinates) => {
   updateCurrentWeather(weather);
   getForecastByCityID(weather.id);
 }
-//  API Connection for current weather section
-// let getWeatherByCityName = async (coordinates) => {
-//   let endpoint = `${weatherBaseEndpoint}?lat=${coordinates[0]}&lon=${coordinates[1]}&appid=${weatherAPIKey}`;
-//   let response = await fetch(endpoint);
-//   if (response.status !== 200) {
-//     alert("City not found!");
-//     return;
-//   }
-//   let weather = await response.json();
-//   return weather;
-// };
 // API get list hours weather (phan lay thong tin api thoi tiet tung gio)
-let getHoursForestCast = async (coordinates) => {
-  let endpoint = `${weatherBaseEndpoint}?lat=${coordinates[0]}&lon=${coordinates[1]}&appid=${weatherAPIKey}`;
+let getHoursForestCast = async (cityString) => {
+  let city;
+  if (cityString.includes(",")) {
+    city =
+      cityString.substring(0, cityString.indexOf(",")) +
+      cityString.substring(cityString.lastIndexOf(","));
+  } else {
+    city = cityString;
+  }
+  let endpoint = `${weatherBaseEndpoint}?q=${city}&appid=${weatherAPIKey}`;
   let response = await fetch(endpoint);
   if (response.status !== 200) {
     alert("City not found!");
@@ -114,17 +119,15 @@ let getForecastByCityID = async (id) => {
         day: forecast.temp.day,
         eve: forecast.temp.eve,
       },
-      icon: forecast.weather[0].icon
+      id: forecast.weather[0].id
     });
   });
   updateForecast(dailys);
 };
 // phan lay thong tin toa do de tra ve thoi tiet
 let weatherForCity = async (city) => { 
-  convertAddressToCoordinates(city).then(result => {
-    getWeatherCurrentDay(result);
-    getHoursForestCast(result);
-  })
+  getWeatherCurrentDay(city);
+  getHoursForestCast(city);
 };
 
 // Set city weather info (phan tim kiem thoi tiet tung noi)
@@ -169,10 +172,16 @@ let updateListHoursWeather = (data) => {
     let minutes = date.getMinutes() < 10 ? '0'+date.getMinutes() : date.getMinutes();
     let formattedTime = `${hours}:${minutes}`;
     let temp = Math.round(parseFloat(data.list[i].main.temp) - 273.15);
-    let icon = `https://openweathermap.org/img/wn/${data.list[i].weather[0].icon}.png`;
+    let iconUrl = "";
+    // console.log(data);
+    weatherImages.forEach((obj) => {
+      if (obj.ids.includes(data.list[i].weather[0].id)) {
+        iconUrl = obj.url;
+      }
+    });
     html += `<div class=" item item_1">
         <h6> ${formattedTime} </h6>
-        <img src="${icon}" alt="rainny" class="weather_forecast_icon">
+        <img src="${iconUrl}" alt="rainny" class="weather_forecast_icon">
         <h6> <span class="value">${temp}</span>°C </h6>
     </div>`;
   }
@@ -183,10 +192,15 @@ let updateListHoursWeather = (data) => {
 let updateForecast = (dailys) => {
   let html = ``;
   dailys.forEach((day) => {
-    let iconUrl = "http://openweathermap.org/img/wn/" + day.icon + '.png';
+    let iconUrl = "";
     let dayName = dayOfWeek(day.dt);
     let temp = Math.round(day.temp.day - 273.15);
     let calendar = day.canlendar;
+    weatherImages.forEach((obj) => {
+      if (obj.ids.includes(day.id)) {
+        iconUrl = obj.url;
+      }
+    });
     html += `
         <div class="weather_forecast_item item item_1 align-items-center">
         <div class="col-4">
@@ -220,61 +234,42 @@ let dayOfWeek = (dt = new Date().getTime()) => {
 
 // Get wind info - from degree to direction
 // phan lay toa do khi bat dinh vi (y/c phai bat dinh vi)
-let getGeolocationCurrent = () => { 
-  return new Promise((resolve, reject) => {
-    if ("geolocation" in navigator) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          const lat = position.coords.latitude;
-          const lng = position.coords.longitude;
-          resolve([lat, lng]);
-        },
-        (error) => {
-          reject("Error getting geolocation: " + error.message);
-        }
-      );
-    } else {
-      reject("Geolocation is not supported by this browser.");
-    }
-  });
-}
+// let getGeolocationCurrent = () => { 
+//   return new Promise((resolve, reject) => {
+//     if ("geolocation" in navigator) {
+//       navigator.geolocation.getCurrentPosition(
+//         (position) => {
+//           const lat = position.coords.latitude;
+//           const lng = position.coords.longitude;
+//           resolve([lat, lng]);
+//         },
+//         (error) => {
+//           reject("Error getting geolocation: " + error.message);
+//         }
+//       );
+//     } else {
+//       reject("Geolocation is not supported by this browser.");
+//     }
+//   });
+// }
 
-let convertAddressToCoordinates = async (address) => {
-  let apiKey = 'M--tqWacqVfZvRoIjEeEN9Pn_nPJV6IHlRPHaQBUN3M';
-  let endpoint = `https://geocode.search.hereapi.com/v1/geocode?q=${encodeURIComponent(address)}&apiKey=${apiKey}`;
-  let response = await fetch(endpoint);
-  if (response.status !== 200) {
-    alert("City not found!");
-    return;
-  }
-  let coordinates = await response.json();
-  let lat = coordinates.items[0].position.lat;
-  let lng = coordinates.items[0].position.lng;
-  return [lat,lng];
-}
+// Default city when start the page
+let init = () => {
+  //lay list thoi tiet trong ngay
+  getHoursForestCast("HaNoi");
+  getWeatherCurrentDay("HaNoi");
+  //lay thoi tiet ngay hom nay
+  let date = new Date();
+  let dayOfWeek = date.getDate();
+  let month = date.getMonth() + 1;
+  let nameMonth = date.toLocaleString('en-US', { month: 'long' });
+  let year = date.getFullYear();
+  let hours = date.getHours() < 10 ? '0' + date.getHours() : date.getHours();
+  let minutes = date.getMinutes() < 10 ? '0'+date.getMinutes() : date.getMinutes();
+  calendar.innerText = dayOfWeek + '/' + month + '/' + year;
+  day.innerHTML = hours + ':' + minutes + '&emsp;' + nameMonth + ' ' + dayOfWeek;
+  // // console.log(nameMonth);
 
-  // Default city when start the page
-  let init = () => {
-    //lay list thoi tiet trong ngay
-    getGeolocationCurrent().then(result => {
-      // weatherForCity(result);
-      getHoursForestCast(result);
-      getWeatherCurrentDay(result);
-    }).catch(error => {
-      alert('Yêu cầu bạn bật định vị')
-    });
-    //lay thoi tiet ngay hom nay
-    let date = new Date();
-    let dayOfWeek = date.getDate();
-    let month = date.getMonth() + 1;
-    let nameMonth = date.toLocaleString('en-US', { month: 'long' });
-    let year = date.getFullYear();
-    let hours = date.getHours() < 10 ? '0' + date.getHours() : date.getHours();
-    let minutes = date.getMinutes() < 10 ? '0'+date.getMinutes() : date.getMinutes();
-    calendar.innerText = dayOfWeek + '/' + month + '/' + year;
-    day.innerHTML = hours + ':' + minutes + '&emsp;' + nameMonth + ' ' + dayOfWeek;
-    // // console.log(nameMonth);
+};
 
-  };
-
-  init();
+init();
